@@ -1,23 +1,24 @@
 import {Card} from "@/app/ui/card/card";
-import {CardObject} from "@/app/lib/definitions";
+import {fetchAllCards} from "@/app/lib/data";
 
 
-export function Cards({cards}: {
-    cards: CardObject[];
+export async function Cards({
+                                setQuery,
+                                selectionQuery,
+                            }: {
+    setQuery: string;
+    selectionQuery: string;
 }) {
 
+    const cards = await fetchAllCards(setQuery, selectionQuery)
+
     return (
-        <div className="rounded-xl bg-gray-50 p-2 shadow-sm">
-            <div className="flex p-4">
-                <h3 className="ml-2 text-sm font-medium">CARDS</h3>
-            </div>
-            <p className="rounded-xl bg-white px-4 py-8 text-center text-2xl">
-                {
-                    cards.map( (card) => {
-                        return (<Card key={card.id} title={card.name} image={card.image}/> );
-                    })
-                }
-                </p>
+        <div className="rounded-xl grid grid-cols-4 gap-4">
+            {
+                cards.map( (card) => {
+                    return (<Card key={card.id} title={card.name} image={card.image}/> );
+                })
+            }
         </div>
     );
 }
