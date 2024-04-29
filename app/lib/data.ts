@@ -3,19 +3,19 @@ import {CardObject, SetObject} from "@/app/lib/definitions";
 import fetch from 'node-fetch';
 
 
-export async function fetchAllCards(setQuery: string, selectionQuery: string) {
-    console.log("Fetching cards from the backend: "+ setQuery + " -- " + selectionQuery)
+export async function fetchAllCards(setId: string, selectionName: string) {
+    console.log("Fetching cards from the backend: "+ setId + " -- " + selectionName)
     // console.warn("Received query but not doing anything with it now: ", query)
     const queryParam = new URLSearchParams();
-    if (setQuery != "") {
-        queryParam.append('set_id', setQuery);
+    if (setId != "") {
+        queryParam.append('set_id', setId);
     } else {
         queryParam.delete('set_id')
     }
-    if (selectionQuery != "") {
-        queryParam.append('selection_id', selectionQuery);
+    if (selectionName != "") {
+        queryParam.append('selection_name', selectionName);
     } else {
-        queryParam.delete('selection_id')
+        queryParam.delete('selection_name')
     }
     const response = await fetch('http://localhost:8080/card?' + queryParam );
     console.log("Doing a query to: " + response.url)

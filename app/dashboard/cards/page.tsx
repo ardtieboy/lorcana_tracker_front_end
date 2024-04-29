@@ -7,17 +7,17 @@ export default async function Home({
                                        searchParams,
                                    }: {
     searchParams?: {
-        set?: string
-        selection?: string
+        set_id?: string
+        selection_name?: string
     };
 }) {
     const expansions = await fetchExpansions()
 
-    const setQuery = searchParams?.set || '';
-    const selectionQuery = searchParams?.selection || '';
+    const set_id = searchParams?.set_id || '';
+    const selection_id = searchParams?.selection_name || '';
 
-    console.log("This is the set query: ", setQuery)
-    console.log("This is the selection query: ", selectionQuery)
+    console.log("This is the set query: ", set_id)
+    console.log("This is the selection query: ", selection_id)
 
 
     return (
@@ -26,7 +26,7 @@ export default async function Home({
                 <div>
                     <h1>CARDS</h1>
                     <Cardfilter expansions={expansions}></Cardfilter>
-                    <Cards setQuery={setQuery} selectionQuery={selectionQuery}></Cards>
+                    <Cards setId={set_id} selectionId={selection_id}></Cards>
                 </div>
             }
         </>

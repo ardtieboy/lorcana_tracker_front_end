@@ -3,17 +3,17 @@ import {fetchAllCards} from "@/app/lib/data";
 
 
 export async function Cards({
-                                setQuery,
-                                selectionQuery,
+                                setId,
+                                selectionId,
                             }: {
-    setQuery: string;
-    selectionQuery: string;
+    setId: string;
+    selectionId: string;
 }) {
 
-    const cards = await fetchAllCards(setQuery, selectionQuery)
+    const cards = await fetchAllCards(setId, selectionId)
 
     return (
-        <div className="rounded-xl grid grid-cols-4 gap-4">
+        <div className="rounded-xl grid grid-cols-8 gap-8">
             {
                 cards.map( (card) => {
                     return (<Card key={card.id} title={card.name} image={card.image}/> );

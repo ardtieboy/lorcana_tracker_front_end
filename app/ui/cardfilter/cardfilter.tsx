@@ -22,19 +22,19 @@ export function Cardfilter({expansions}: {expansions: SetObject[]}) {
         // probably want to do some form validation to make sure the expansions and selection are valid
 
         const expansion_id = payload.get('expansion_id')
-        const selection_id = payload.get('selection_id')
+        const selection_name = payload.get('selection_name')
         const params = new URLSearchParams(searchParams);
 
         if (expansion_id) {
-            params.set('set', expansion_id.toString())
+            params.set('set_id', expansion_id.toString())
         } else {
-            params.delete('set');
+            params.delete('set_id');
         }
 
-        if (selection_id) {
-            params.set('selection', selection_id.toString())
+        if (selection_name) {
+            params.set('selection_name', selection_name.toString())
         } else {
-            params.delete('selection');
+            params.delete('selection_name');
         }
 
         replace(`${pathname}?${params.toString()}`)
@@ -54,7 +54,7 @@ export function Cardfilter({expansions}: {expansions: SetObject[]}) {
                         id="expansion_id"
                         name="expansion_id"
                         className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                        defaultValue={searchParams.get('set')?.toString()}
+                        defaultValue={searchParams.get('set_id')?.toString() || "" }
                         aria-describedby="customer-error"
                     >
                         <option value="" disabled>
@@ -71,15 +71,15 @@ export function Cardfilter({expansions}: {expansions: SetObject[]}) {
                 </div>
             </div>
             <div className="mb-4">
-                <label htmlFor="selection_id" className="mb-2 block text-sm font-medium">
+                <label htmlFor="selection_name" className="mb-2 block text-sm font-medium">
                     Choose a selection:
                 </label>
                 <div className="relative">
                     <select
-                        id="selection_id"
-                        name="selection_id"
+                        id="selection_name"
+                        name="selection_name"
                         className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                        defaultValue={searchParams.get('selection')?.toString()}
+                        defaultValue={searchParams.get('selection_name')?.toString() || "" }
                         aria-describedby="customer-error"
                     >
                         <option value="" disabled>
@@ -87,7 +87,7 @@ export function Cardfilter({expansions}: {expansions: SetObject[]}) {
                         </option>
                         {
                             selection.map((s) => (
-                                <option key={s.id} value={s.id}>
+                                <option key={s.id} value={s.name}>
                                     {s.name}
                                 </option>
                             ))
