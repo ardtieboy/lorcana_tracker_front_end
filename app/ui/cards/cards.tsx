@@ -1,5 +1,5 @@
 import {Card} from "@/app/ui/card/card";
-import {fetchAllCards} from "@/app/lib/data";
+import {fetchRequestedCards} from "@/app/lib/data";
 
 
 export async function Cards({
@@ -10,7 +10,7 @@ export async function Cards({
     selectionId: string;
 }) {
 
-    const cards = await fetchAllCards(setId, selectionId)
+    const cards = await fetchRequestedCards(setId, selectionId)
 
     return (
         <div className="rounded-xl grid grid-cols-8 gap-8">
