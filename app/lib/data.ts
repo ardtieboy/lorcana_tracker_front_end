@@ -15,8 +15,9 @@ export async function fetchOwnedCards() {
 }
 
 
-export async function fetchRequestedCards(setId: string, selectionName: string) {
+export async function fetchRequestedCards(setId: string, selectionName: string, keyword: string) {
     console.log("Fetching cards from the backend: "+ setId + " -- " + selectionName)
+    console.log("Search term is: ")
     var allCards = await fetchAllCards()
     const ownedCards = await fetchOwnedCards()
 
@@ -52,6 +53,12 @@ export async function fetchRequestedCards(setId: string, selectionName: string) 
         } else if (selectionName != "all"){
             console.error("Unknown selection name: ", selectionName)
         }
+    }
+
+    if (keyword != "") {
+        allCards = allCards.filter( card => {
+            return card.name.toLowerCase().includes(keyword.toLowerCase()) || card.body_text.toLowerCase().includes(keyword.toLowerCase()) || card.flavor_text.toLowerCase().includes(keyword.toLowerCase())
+        })
     }
 
     return allCards.sort((one, two) => (one.card_num < two.card_num ? -1 : 1));

@@ -4,17 +4,14 @@ export type CardObject = {
     image: string;
     set_id: string;
     card_num: number;
+    body_text: string;
+    flavor_text: string;
 };
 
 export type SetObject = {
     set_name: string;
     set_id: string;
     set_num: number;
-};
-
-export type SelectionType = {
-    name: string;
-    id: number;
 };
 
 export type CardInCollectionObject = {
