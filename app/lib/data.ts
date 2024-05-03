@@ -1,6 +1,6 @@
 import {CardInCollectionObject, CardObject, SetObject} from "@/app/lib/definitions";
 
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
 
 export async function fetchAllCards() {
     const response = await fetch('http://localhost:8080/card');
