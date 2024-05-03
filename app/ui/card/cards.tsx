@@ -1,4 +1,5 @@
-import {Card} from "@/app/ui/card/card";
+import {
+    Card} from "@/app/ui/card/card";
 import {fetchRequestedCards} from "@/app/lib/data";
 
 
@@ -18,7 +19,9 @@ export async function Cards({
         <div className="rounded-xl grid grid-cols-8 gap-8">
             {
                 cards.map( (card) => {
-                    return (<Card key={card.id} title={card.name} image={card.image}/> );
+                    return (
+                        <Card key={card.id} id={card.id} title={card.name} image={card.image}/>
+                    );
                 })
             }
         </div>

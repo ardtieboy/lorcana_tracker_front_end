@@ -1,7 +1,8 @@
-import {Cards} from "@/app/ui/cards/cards";
+import {Cards} from "@/app/ui/card/cards";
 import {Cardfilter} from "@/app/ui/filtering/cardfilter";
 import {fetchExpansions} from "@/app/lib/data";
 import Search from "@/app/ui/filtering/search";
+import {Counter} from "@/app/ui/card/counter";
 
 
 export default async function Home({

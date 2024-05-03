@@ -70,3 +70,17 @@ export async function fetchExpansions() {
     const response = await fetch('http://localhost:8080/set');
     return await response.json() as SetObject[]
 }
+
+export async function incrementNormalCountCardInCollection(cardId: string, ownedNormalCopies: number) {
+    console.log("Updating card in collection: ", cardId)
+    // const response = await fetch('http://localhost:8080/card_in_collection/' + cardId, {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //         owned_normal_copies: ownedNormalCopies,
+    //     })
+    // });
+    // return await response.json() as CardInCollectionObject
+}
