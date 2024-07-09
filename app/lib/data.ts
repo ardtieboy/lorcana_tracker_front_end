@@ -3,17 +3,18 @@ import {CardInCollectionObject, CardObject, SetObject} from "@/app/lib/definitio
 // import fetch from 'node-fetch';
 
 export async function fetchAllCards() {
-    const response = await fetch('http://localhost:8080/card');
+    const response = await fetch('http://localhost:8080/card', { cache: 'no-store' });
     console.log("Doing a query to: " + response.url)
     return await response.json() as CardObject[]
 }
 
 export async function fetchOwnedCards() {
-    const response = await fetch('http://localhost:8080/card_in_collection');
+    const response = await fetch('http://localhost:8080/card_in_collection', { cache: 'no-store' });
     console.log("Doing a query to: " + response.url)
-    return await response.json() as CardInCollectionObject[]
+    var x = await response.json()
+    console.log(x)
+    return x as CardInCollectionObject[]
 }
-
 
 export async function fetchRequestedCards(setId: string, selectionName: string, keyword: string) {
     console.log("Fetching cards from the backend: "+ setId + " -- " + selectionName)
